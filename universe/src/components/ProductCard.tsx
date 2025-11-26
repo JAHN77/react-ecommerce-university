@@ -1,5 +1,6 @@
 import type { Producto } from '../services/ecommerce/productos.services';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   producto: Producto;
@@ -48,17 +49,22 @@ export default function ProductCard({ producto, onAddCart }: ProductCardProps) {
             </span>
           </div>
 
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center gap-2">
             <h5 className="mb-0 text-primary">
               ${producto.precio.toFixed(2)}
             </h5>
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={handleAddCart}
-              disabled={producto.stock === 0}
-            >
-              Agregar
-            </button>
+            <div className="d-flex gap-2">
+              <Link to={`/producto/${producto.id}`} className="btn btn-info btn-sm">
+                Ver Detalle
+              </Link>
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={handleAddCart}
+                disabled={producto.stock === 0}
+              >
+                Agregar
+              </button>
+            </div>
           </div>
         </div>
       </div>
